@@ -16,7 +16,16 @@ String getLocalTimeUNIX();
 #define NTP_GMT_OFFSET_SEC 3600
 #define NTP_DAYLIGHT_OFFSET_SEC 3600
 
+// WiFi credentials
+#define WIFI_SSID "MBE-IoT"
+#define WIFI_PASSWORD ""
 
+// Firebase API key
+#define API_KEY ""
+
+
+// Firebase RTDB URL
+#define DATABASE_URL ""
 // Firebase objects
 FirebaseData fbdo;
 FirebaseAuth auth;
@@ -216,18 +225,18 @@ floatValue = 0.01 + random (0,100);
     }
 
     // Read sample int
-  
-
- if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 3600 || sendDataPrevMillis == 0)){
-    int LED_RED1;
+   int LED_RED1;
     int LED_Blue;
     int LED_Green;
+
+ if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 3600 || sendDataPrevMillis == 0)){
+   
 
     Serial.print("read/int: ");
     if (Firebase.RTDB.getInt(&fbdo, "actuador/RGB/Red", &LED_RED1))
     {
       Serial.println(LED_RED1);
-             analogWrite(PIN_RGB_ROJO_LED, LED_RED1);
+  
     }
     else
     {
@@ -307,8 +316,21 @@ floatValue = 0.01 + random (0,100);
     String timestamp_iso = getLocalTimeISO();
     Serial.println("ISO: " + timestamp_iso);
   }
+
+analogWrite(PIN_RGB_ROJO_LED, LED_RED1);
+analogWrite(PIN_RGB_VERDE_LED, LED_Green);
+analogWrite(PIN_RGB_AZUL_LED, LED_Blue);
 }
+
+
 }
+
+
+
+
+
+
+
 
 String getLocalTimeISO()
 {
